@@ -46,8 +46,8 @@ echo run parallel!!'''
       steps {
         sh '''pwd
 cd ./docker
-docker build -t cloudacademydevops/webapp1-2019:$BUILD_ID .
-docker tag cloudacademydevops/webapp1-2019:$BUILD_ID cloudacademydevops/webapp1-2019:latest
+docker build -t shail06/webapp1-2019:$BUILD_ID .
+docker tag shail06/webapp1-2019:$BUILD_ID shail06/webapp1-2019:latest
 docker images
 '''
       }
@@ -59,8 +59,8 @@ docker images
           withCredentials([usernamePassword(credentialsId: 'ca-dockerhub', usernameVariable: 'DOCKER_USERNAME', passwordVariable: 'DOCKER_PASSWORD')]){
             sh '''
 docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD"
-docker push cloudacademydevops/webapp1-2019:$BUILD_ID
-docker push cloudacademydevops/webapp1-2019:latest
+docker push shail06/webapp1-2019:$BUILD_ID
+docker push shail06/webapp1-2019:latest
 '''
           }
         }
