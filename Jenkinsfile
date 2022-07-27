@@ -11,6 +11,7 @@ pipeline {
         git(url: 'https://github.com/jeremycook123/devops-webapp2', branch: 'master')
       }
     }
+
     stage('Build') {
       parallel {
         stage('Build') {
@@ -23,20 +24,24 @@ cp ./build/libs/$RELEASE ./docker
 '''
           }
         }
+
         stage('P1') {
           steps {
             sh '''date
 echo run parallel!!'''
           }
         }
+
         stage('P2') {
           steps {
             sh '''date
 echo run parallel!!'''
           }
         }
+
       }
     }
+
     stage('Packaging') {
       steps {
         sh '''pwd
@@ -47,6 +52,7 @@ docker images
 '''
       }
     }
+
     stage('Publish') {
       steps {
         script {
@@ -61,5 +67,6 @@ docker push cloudacademydevops/webapp1-2019:latest
 
       }
     }
+
   }
 }
